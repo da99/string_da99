@@ -1,48 +1,46 @@
-class String_da99
-  @HEAD_WHITE_SPACE = /^[\s]+/
-  @END_PERIOD = /\.$/
-  @END_COLON  = /\:$/
-  @WHITESPACE = /[\s]+/
+
+String_da99 =
+
+  HEAD_WHITE_SPACE: /^[\s]+/
+  END_PERIOD: /\.$/
+  END_COLON : /\:$/
+  WHITESPACE: /[\s]+/
   
-  constructor: (parent) ->
-    @str = parent
-    @HEAD_WHITE_SPACE = @constructor.HEAD_WHITE_SPACE
-    @END_PERIOD       = @constructor.END_PERIOD
-    @END_COLON        = @constructor.END_COLON
-    
-  regexp: (name) ->
-    val = @constructor[name]
-    if !val
-      throw new Error("RegExp, #{name}, not found.")
-    val
+  da99:
+    regexp: (name) ->
+      val = String_da99[name]
+      if !val
+        throw new Error("RegExp, #{name}, not found.")
+      val
 
   standardize: () ->
-    @str.replace(/\t/, "  ").replace(/\r/, "")
+    this.replace(/\t/, "  ").replace(/\r/, "")
     
   strip: () ->
-    @str.replace(/^\s+|\s+$/g, '')
+    this.replace(/^\s+|\s+$/g, '')
     
   is_empty: () ->
-    @str.length is 0
+    this.length is 0
 
   is_whitespace: () ->
     return( @strip().length is 0 )
   
   begins_with_whitespace: () ->
-    @HEAD_WHITE_SPACE.test @str
+    @HEAD_WHITE_SPACE.test this
   has_end_period: () ->
-    @END_PERIOD.test @str
+    @END_PERIOD.test this
   has_end_colon: () ->
-    @END_COLON.test @str
+    @END_COLON.test this
     
   remove_end: (type) ->
-    switch type
+    val = switch type
       when ".", "period"
-        @str.replace @END_PERIOD, ""
+        this.replace @END_PERIOD, ""
       when ":", "colon"
-        @str.replace @END_COLON, ""
+        this.replace @END_COLON, ""
       else
-        @str.replace (new RegExp("\\#{type}$")), ""
+        this.replace (new RegExp("\\#{type}$")), ""
+    val
 
   strip_beginning_empty_lines: (lines) ->
     arr = []
@@ -53,7 +51,7 @@ class String_da99
   
   remove_indentation: () ->
     return "" if @strip() is ""
-    lines = ( @str.split("\n") )
+    lines = ( this.split("\n") )
     indent_meta= @HEAD_WHITE_SPACE.exec(lines[0])
     if !indent_meta
       return lines.join("\n")
@@ -62,7 +60,11 @@ class String_da99
     final.join("\n")
   
   whitespace_split: () ->
-    @strip().split @regexp('WHITESPACE')
+    @strip().split @da99.regexp('WHITESPACE')
     
+for k, v of String_da99
+  if !String.prototype[k] 
+    String.prototype[k] = String_da99[k]
+      
 module.exports = (str) ->
   new String_da99(str)
