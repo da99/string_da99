@@ -1,6 +1,6 @@
 {
   "name": "string_da99",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Da99's helper functions for strings.",
   "main": "lib/string_da99.js",
   "directories": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/da99/englishy"
+    "url": "https://github.com/da99/string_da99"
   },
   "keywords": [
     "string",

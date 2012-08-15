@@ -15,22 +15,18 @@ In your shell:
 
 In your CoffeeScript:
 
-    str = require 'string_da99'
+    Str = require 'string_da99'
 
+    Str("\n").is_whitespace() # ---> true
+    Str(" a ").strip()        # --> "a"
+    Str("").is_empty()        # --> true
+    Str("A b c.").remove_end( '.' ) # --> "A b c"
+    
+    Str("Shutdown the govt schools.").whitespace_split()
+    # -> [ "Shutdown", "the", "govt", "schools." ]
 
-    my_str = "Shutdown the govt schools."
-
-    str(my_str).whitespace_split()
-
-    # --->
-
-    [ "Shutdown", "the", "govt", "schools." ]
-
-
-There's more...
-===============
-
-I'm not going to write more since I prefer most people
-not to use my code.  
-
+    Str("  a\n  b\n  c").remove_indentation()
+    # -> "a\nb\nc"
+    
+    
 
