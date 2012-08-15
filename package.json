@@ -1,0 +1,22 @@
+{
+  "name": "string_da99",
+  "version": "0.0.1",
+  "description": "Da99's helper functions for strings.",
+  "main": "lib/string_da99.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/da99/englishy"
+  },
+  "keywords": [
+    "string",
+    "helpers"
+  ],
+  "author": "da99",
+  "license": "BSD"
+}
