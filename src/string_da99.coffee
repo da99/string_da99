@@ -2,6 +2,7 @@ class String_da99
   @HEAD_WHITE_SPACE = /^[\s]+/
   @END_PERIOD = /\.$/
   @END_COLON  = /\:$/
+  @WHITESPACE = /[\s]+/
   
   constructor: (parent) ->
     @str = parent
@@ -9,6 +10,12 @@ class String_da99
     @END_PERIOD       = @constructor.END_PERIOD
     @END_COLON        = @constructor.END_COLON
     
+  regexp: (name) ->
+    val = @constructor[name]
+    if !val
+      throw new Error("RegExp, #{name}, not found.")
+    val
+
   standardize: () ->
     @str.replace(/\t/, "  ").replace(/\r/, "")
     
@@ -54,6 +61,8 @@ class String_da99
     final = (l.replace(indent, "") for l in lines)
     final.join("\n")
   
+  whitespace_split: () ->
+    @strip().split @regexp('WHITESPACE')
     
 module.exports = (str) ->
   new String_da99(str)

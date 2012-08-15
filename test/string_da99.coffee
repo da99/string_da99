@@ -6,6 +6,13 @@ Str    = require 'string_da99'
 
 describe "Stringy", () ->
 
+  describe ".whitespace_split()", () ->
+    it "splits string on whitespace", () ->
+      assert.deepEqual Str("a\tb\nc").whitespace_split(), ["a", "b", "c"]
+      
+    it "ignores any beginning/ending whitespace", () ->
+      assert.deepEqual Str("\ta\nb").whitespace_split(), ["a", "b"]
+      
   describe ".strip()", () ->
     it "removes all whitespace", () ->
       assert.equal Str(" a ").strip(), "a"
