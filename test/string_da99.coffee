@@ -47,6 +47,15 @@ describe "Stringy", () ->
     it "does not remove empty lines after de-indentation", () ->
       str = "  a\n  \n  b"
       assert.equal (str).remove_indentation(), "a\n\nb"
+      
+    it "ignores indentation of empty lines", () ->
+      str = "    \n  Text 1\n    Text 2"
+      assert.equal str.remove_indentation(), "Text 1\n  Text 2"
+
+    it "only removes spaces at the start of the string, not afterwards. (eg /^\\s/ vs /\\s/).", () ->
+      str = " Text 1\nText 2"
+      assert.equal str.remove_indentation(), "Text 1\nText 2"
+
 
   describe '.remove_end( char )', () ->
     

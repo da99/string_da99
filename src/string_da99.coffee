@@ -51,11 +51,11 @@ String_da99 =
   
   remove_indentation: () ->
     return "" if @strip() is ""
-    lines = ( this.split("\n") )
+    lines = this.replace( /^\s+\n/g, "").split("\n")
     indent_meta= @HEAD_WHITE_SPACE.exec(lines[0])
     if !indent_meta
       return lines.join("\n")
-    indent = indent_meta[0]
+    indent = new RegExp("^#{indent_meta[0]}")
     final = (l.replace(indent, "") for l in lines)
     final.join("\n")
   
