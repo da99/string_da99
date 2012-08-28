@@ -1,6 +1,6 @@
 {
   "name": "string_da99",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Da99's helper functions for strings.",
   "main": "lib/string_da99.js",
   "directories": {
